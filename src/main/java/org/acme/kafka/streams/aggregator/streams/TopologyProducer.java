@@ -23,8 +23,8 @@ public class TopologyProducer {
     int slidingWindow;
 
     private static final String SUBMISSIONS_TOPIC = "tripvibe";
-    static final String SUBMISSIONS_STORE = "submissions-store";
-    private static final String SUBMISSIONS_AGGREGATED_TOPIC = "submissions-aggregated";
+    private static final String SUBMISSIONS_STORE = "submissions-store";
+    private static final String SUBMISSIONS_AGGREGATED_TOPIC = "submissions-aggregated-";
 
     @Produces
     public Topology buildTopology() {
@@ -49,7 +49,7 @@ public class TopologyProducer {
 
         KStream<String, Aggregation> rounded = windowed.map(((integerWindowed, aggregation) -> new KeyValue<>(integerWindowed.key(), aggregation)));
         rounded.to(
-                SUBMISSIONS_AGGREGATED_TOPIC,
+                SUBMISSIONS_AGGREGATED_TOPIC + slidingWindow,
                 Produced.with(Serdes.String(), aggregationSerde)
         );
 
