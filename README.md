@@ -16,7 +16,7 @@ export APP_ID=tv-streams-1; export WINDOW_MINUTES=1; mvn quarkus:dev -Dquarkus.h
 export APP_ID=tv-streams-5; export WINDOW_MINUTES=5; mvn quarkus:dev -Dquarkus.http.port=8082 -Ddebug=5007
 ```
 
-Create compacted topic for aggrgates
+Create compacted topic for aggregates
 ```bash
 /opt/kafka_2.12-2.2.0/bin/kafka-topics.sh --zookeeper localhost:2181 --create --topic submissions-aggregated-1 --replication-factor 1 --partitions 1 --config "cleanup.policy=compact" --config "delete.retention.ms=100"  --config "segment.ms=100" --config "min.cleanable.dirty.ratio=0.01"
 ```
