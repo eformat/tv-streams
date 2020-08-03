@@ -19,12 +19,17 @@ import java.util.concurrent.TimeUnit;
 @ApplicationScoped
 public class TopologyProducer {
 
+    @ConfigProperty(name = "streams.aggregate.key.name")
+    String keyName;
+
+    @ConfigProperty(name = "streams.aggregate.source.topic")
+    String sourceTopic;
+
     @ConfigProperty(name = "streams.aggregate.window.minutes")
     int slidingWindow;
 
-    private static final String SUBMISSIONS_TOPIC = "tripvibe";
     private static final String SUBMISSIONS_STORE = "submissions-store";
-    private static final String SUBMISSIONS_AGGREGATED_TOPIC = "submissions-aggregated-";
+    private static final String SUBMISSIONS_AGGREGATED_TOPIC = "submissions-aggregated";
 
     @Produces
     public Topology buildTopology() {
@@ -34,14 +39,14 @@ public class TopologyProducer {
         JsonbSerde<Submission> submissionSerde = new JsonbSerde<>(Submission.class);
 
         KStream<Windowed<String>, Aggregation> windowed = builder.stream(
-                SUBMISSIONS_TOPIC,
+                sourceTopic,
                 Consumed.with(Serdes.String(), submissionSerde)
         )
                 .groupByKey()
                 .windowedBy(TimeWindows.of(TimeUnit.MINUTES.toMillis(slidingWindow)))
                 .aggregate(
                         Aggregation::new,
-                        (route_id, submission, aggregation) -> aggregation.updateFrom(submission),
+                        (key, submission, aggregation) -> aggregation.updateFrom(submission, key),
                         Materialized.<String, Aggregation, WindowStore<Bytes, byte[]>>as(SUBMISSIONS_STORE)
                                 .withKeySerde(Serdes.String())
                                 .withValueSerde(aggregationSerde)
@@ -49,7 +54,7 @@ public class TopologyProducer {
 
         KStream<String, Aggregation> rounded = windowed.map(((integerWindowed, aggregation) -> new KeyValue<>(integerWindowed.key(), aggregation)));
         rounded.to(
-                SUBMISSIONS_AGGREGATED_TOPIC + slidingWindow,
+                String.format("%s-%s-%s", SUBMISSIONS_AGGREGATED_TOPIC, keyName, slidingWindow),
                 Produced.with(Serdes.String(), aggregationSerde)
         );
 

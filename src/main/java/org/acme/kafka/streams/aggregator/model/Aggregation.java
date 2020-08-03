@@ -7,7 +7,7 @@ import java.math.RoundingMode;
 
 @RegisterForReflection
 public class Aggregation {
-    public String route_id;
+    public String key;
 
     public int count;
 
@@ -21,8 +21,8 @@ public class Aggregation {
     public double vibeSum;
     public double vibeAvg;
 
-    public Aggregation updateFrom(Submission submission) {
-        route_id = submission.getSentiment().getRoute_id();
+    public Aggregation updateFrom(Submission submission, String key) {
+        this.key = key;
 
         count++;
         capacitySum += submission.getSentiment().getCapacity();
