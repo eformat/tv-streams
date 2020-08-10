@@ -276,7 +276,6 @@ spec:
       from:
         kind: ImageStreamTag
         name: tv-streams-route-5:latest
-        namespace: tripvibe
       lastTriggeredImage: quay.io/eformat/tv-streams:latest
     type: ImageChange
 ---
@@ -386,7 +385,6 @@ spec:
       from:
         kind: ImageStreamTag
         name: tv-streams-trip-1:latest
-        namespace: tripvibe
       lastTriggeredImage: quay.io/eformat/tv-streams:latest
     type: ImageChange
 ---
@@ -496,7 +494,6 @@ spec:
       from:
         kind: ImageStreamTag
         name: tv-streams-trip-5:latest
-        namespace: tripvibe
       lastTriggeredImage: quay.io/eformat/tv-streams:latest
     type: ImageChange
 ---
