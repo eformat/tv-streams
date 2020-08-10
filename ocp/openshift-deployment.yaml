@@ -187,7 +187,6 @@ spec:
     from:
       kind: DockerImage
       name: quay.io/eformat/tv-streams:latest
-    generation: 2
     importPolicy: {}
     name: latest
     referencePolicy:
@@ -298,7 +297,6 @@ spec:
     from:
       kind: DockerImage
       name: quay.io/eformat/tv-streams:latest
-    generation: 2
     importPolicy: {}
     name: latest
     referencePolicy:
@@ -409,7 +407,6 @@ spec:
     from:
       kind: DockerImage
       name: quay.io/eformat/tv-streams:latest
-    generation: 2
     importPolicy: {}
     name: latest
     referencePolicy:
