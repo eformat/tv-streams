@@ -7,6 +7,7 @@ ENVELOPE UPSERT;
 CREATE MATERIALIZED VIEW AVERAGES_ROUTE_1 AS
     SELECT (text::JSONB)->>'key' as key,
            CAST((text::JSONB)->'count' as int) as count,
+           CAST(CAST((text::JSONB)->>'instant' as text) as timestamptz) as instant,
            CAST((text::JSONB)->'capacityAvg' as float) as capacityAvg,
            CAST((text::JSONB)->'capacityMax' as int) as capacityMax,
            CAST((text::JSONB)->'capacityMin' as float) as capacityMin,
@@ -26,6 +27,7 @@ ENVELOPE UPSERT;
 CREATE MATERIALIZED VIEW AVERAGES_ROUTE_5 AS
     SELECT (text::JSONB)->>'key' as key,
            CAST((text::JSONB)->'count' as int) as count,
+           CAST(CAST((text::JSONB)->>'instant' as text) as timestamptz) as instant,
            CAST((text::JSONB)->'capacityAvg' as float) as capacityAvg,
            CAST((text::JSONB)->'capacityMax' as int) as capacityMax,
            CAST((text::JSONB)->'capacityMin' as float) as capacityMin,
@@ -45,6 +47,7 @@ ENVELOPE UPSERT;
 CREATE MATERIALIZED VIEW AVERAGES_TRIP_1 AS
     SELECT (text::JSONB)->>'key' as key,
            CAST((text::JSONB)->'count' as int) as count,
+           CAST(CAST((text::JSONB)->>'instant' as text) as timestamptz) as instant,
            CAST((text::JSONB)->'capacityAvg' as float) as capacityAvg,
            CAST((text::JSONB)->'capacityMax' as int) as capacityMax,
            CAST((text::JSONB)->'capacityMin' as float) as capacityMin,
@@ -64,6 +67,7 @@ ENVELOPE UPSERT;
 CREATE MATERIALIZED VIEW AVERAGES_TRIP_5 AS
     SELECT (text::JSONB)->>'key' as key,
            CAST((text::JSONB)->'count' as int) as count,
+           CAST(CAST((text::JSONB)->>'instant' as text) as timestamptz) as instant,
            CAST((text::JSONB)->'capacityAvg' as float) as capacityAvg,
            CAST((text::JSONB)->'capacityMax' as int) as capacityMax,
            CAST((text::JSONB)->'capacityMin' as float) as capacityMin,

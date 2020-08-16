@@ -4,12 +4,15 @@ import io.quarkus.runtime.annotations.RegisterForReflection;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.time.Instant;
 
 @RegisterForReflection
 public class Aggregation {
     public String key;
 
     public int count;
+
+    public Instant instant = Instant.now();
 
     public double capacityMin = Double.MAX_VALUE;
     public double capacityMax = Double.MIN_VALUE;
@@ -23,6 +26,7 @@ public class Aggregation {
 
     public Aggregation updateFrom(Submission submission, String key) {
         this.key = key;
+        instant = Instant.now();
 
         count++;
         capacitySum += submission.getSentiment().getCapacity();
