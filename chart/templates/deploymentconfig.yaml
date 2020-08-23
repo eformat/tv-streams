@@ -38,22 +38,22 @@ spec:
               valueFrom:
                 configMapKeyRef:
                   key: APP_ID
-                  name: {{ include "tv-streams.name" . }}
+                  name: {{ include "tv-streams.fullname" . }}
             - name: KEY_NAME
               valueFrom:
                 configMapKeyRef:
                   key: KEY_NAME
-                  name: {{ include "tv-streams.name" . }}
+                  name: {{ include "tv-streams.fullname" . }}
             - name: SOURCE_TOPIC
               valueFrom:
                 configMapKeyRef:
                   key: SOURCE_TOPIC
-                  name: {{ include "tv-streams.name" . }}
+                  name: {{ include "tv-streams.fullname" . }}
             - name: WINDOW_MINUTES
               valueFrom:
                 configMapKeyRef:
                   key: WINDOW_MINUTES
-                  name: {{ include "tv-streams.name" . }}
+                  name: {{ include "tv-streams.fullname" . }}
           image: ''
           imagePullPolicy: Always
           name: {{ include "tv-streams.name" . }}
