@@ -2,7 +2,7 @@
 apiVersion: image.openshift.io/v1
 kind: ImageStream
 metadata:
-  name: {{ include "tv-streams.name" . }}
+  name: {{ include "tv-streams.fullname" . }}
   labels:
     {{- include "tv-streams.labels" . | nindent 4 }}
   creationTimestamp: null

@@ -3,7 +3,7 @@
 apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
-  name: {{ include "tv-streams.name" . }}
+  name: {{ include "tv-streams.fullname" . }}
   labels:
     {{- include "tv-streams.labels" . | nindent 4 }}
 spec:
@@ -14,7 +14,7 @@ spec:
     termination: edge
   to:
     kind: Service
-    name: {{ include "tv-streams.name" . }}
+    name: {{ include "tv-streams.fullname" . }}
     weight: 100
   wildcardPolicy: None
 status:

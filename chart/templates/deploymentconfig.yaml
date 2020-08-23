@@ -3,7 +3,7 @@
 apiVersion: apps.openshift.io/v1
 kind: DeploymentConfig
 metadata:
-  name: {{ include "tv-streams.name" . }}
+  name: {{ include "tv-streams.fullname" . }}
   labels:
     {{- include "tv-streams.labels" . | nindent 4 }}
 spec:
@@ -79,7 +79,7 @@ spec:
           - {{ include "tv-streams.name" . }}
         from:
           kind: ImageStreamTag
-          name: {{ include "tv-streams.name" . }}:{{ .Values.image_version }}
+          name: {{ include "tv-streams.fullname" . }}:{{ .Values.image_version }}
         lastTriggeredImage: ""
       type: ImageChange
 {{- end }}
