@@ -34,8 +34,26 @@ spec:
     spec:
       containers:
         - env:
-            - name: KAFKA_BOOTSTRAP
-              value: "tv-cluster-kafka-bootstrap:9092"
+            - name: APP_ID
+              valueFrom:
+                configMapKeyRef:
+                  key: APP_ID
+                  name: {{ include "tv-streams.name" . }}
+            - name: KEY_NAME
+              valueFrom:
+                configMapKeyRef:
+                  key: KEY_NAME
+                  name: {{ include "tv-streams.name" . }}
+            - name: SOURCE_TOPIC
+              valueFrom:
+                configMapKeyRef:
+                  key: SOURCE_TOPIC
+                  name: {{ include "tv-streams.name" . }}
+            - name: WINDOW_MINUTES
+              valueFrom:
+                configMapKeyRef:
+                  key: WINDOW_MINUTES
+                  name: {{ include "tv-streams.name" . }}
           image: ''
           imagePullPolicy: Always
           name: {{ include "tv-streams.name" . }}
