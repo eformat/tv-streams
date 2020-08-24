@@ -61,3 +61,4 @@ psql -h localhost -p 6875 materialize -c 'select * from AVERAGES_TRIP_1;'
  867-1-28-13085-22 |    18 |          28 |          43 |          13 |      77 |      43 |      13
 (3 rows)
 ```
+
