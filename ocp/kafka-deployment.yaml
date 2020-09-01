@@ -42,7 +42,7 @@ spec:
   config:
     min.insync.replicas: 2
     retention.ms: -1
-  partitions: 3
+  partitions: 10
   replicas: 2
   topicName: tripvibe
 ---
@@ -56,7 +56,7 @@ spec:
   config:
     min.insync.replicas: 2
     retention.ms: -1
-  partitions: 3
+  partitions: 10
   replicas: 2
   topicName: tripvibe2
 ---
@@ -72,7 +72,7 @@ spec:
     delete.retention.ms: "100"
     min.cleanable.dirty.ratio: "0.01"
     segment.ms: "100"
-  partitions: 3
+  partitions: 10
   replicas: 2
   topicName: submissions-aggregated-route-1
 ---
@@ -88,7 +88,7 @@ spec:
     delete.retention.ms: "100"
     min.cleanable.dirty.ratio: "0.01"
     segment.ms: "100"
-  partitions: 3
+  partitions: 10
   replicas: 2
   topicName: submissions-aggregated-route-5
 ---
@@ -104,7 +104,7 @@ spec:
     delete.retention.ms: "100"
     min.cleanable.dirty.ratio: "0.01"
     segment.ms: "100"
-  partitions: 3
+  partitions: 10
   replicas: 2
   topicName: submissions-aggregated-trip-1
 ---
@@ -120,7 +120,7 @@ spec:
     delete.retention.ms: "100"
     min.cleanable.dirty.ratio: "0.01"
     segment.ms: "100"
-  partitions: 3
+  partitions: 10
   replicas: 2
   topicName: submissions-aggregated-trip-5
 
